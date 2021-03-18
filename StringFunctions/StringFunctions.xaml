@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ContainsDemo" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="713,1241" sap2010:WorkflowViewState.IdRef="ContainsDemo_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ContainsDemo" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="713,1877" sap2010:WorkflowViewState.IdRef="ContainsDemo_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="21">
+    <scg:List x:TypeArguments="x:String" Capacity="42">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -22,10 +22,15 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="26">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="52">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -52,20 +57,20 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Demo For the Below functions&#xD;&#xA;1) Contains&#xD;&#xA;2)  Format&#xD;&#xA;3) IndexOf&#xD;&#xA;4) Join&#xD;&#xA;5) Replace&#xD;&#xA;6) Split&#xD;&#xA;7) Substring&#xD;&#xA;8) IsNullOrEmpty&#xD;&#xA;9) isNullOrWhiteSpace&#xD;&#xA;10) Trim&#xD;&#xA;11) toLower&#xD;&#xA;12) toUpper" DisplayName="String Functions" sap:VirtualizedContainerService.HintSize="376,1176" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Demo For the Below functions&#xA;1) Contains&#xA;2)  Format&#xA;3) IndexOf&#xA;4) Join&#xA;5) Replace&#xA;6) Split&#xA;7) Substring&#xA;8) IsNullOrEmpty&#xA;9) isNullOrWhiteSpace&#xA;10) Trim&#xA;11) toLower&#xA;12) toUpper" DisplayName="String Functions" sap:VirtualizedContainerService.HintSize="412,1812" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="mixedString">
+      <Variable x:TypeArguments="x:String" Default="heLLO WorLD UppEr Or Lower" Name="mixedString" />
+      <Variable x:TypeArguments="x:String" Default="Replaced String Replaced" Name="Replace" />
+      <Variable x:TypeArguments="s:String[]" Name="splitArray" />
+      <Variable x:TypeArguments="x:String" Name="splitString">
         <Variable.Default>
-          <Literal x:TypeArguments="x:String">heLLO WorLD UppEr Or Lower</Literal>
+          <Literal x:TypeArguments="x:String">Sai,Vinay,Prasad,Ramesh,Suresh</Literal>
         </Variable.Default>
       </Variable>
-      <Variable x:TypeArguments="x:String" Name="Replace">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">Replaced String Replaced</Literal>
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="splitList" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -73,12 +78,48 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message - toLower" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;The Lower String is :&quot;+mixedString.ToLower]" />
-    <ui:LogMessage DisplayName="Log Message - toUpper" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;The Upper String is :&quot;+mixedString.ToUpper]" />
-    <ui:LogMessage DisplayName="Log Message - Contains" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Value of Lo in the String is :&quot; + mixedString.ToLower.Contains(&quot;p&quot;).ToString]" />
-    <ui:LogMessage DisplayName="Log Message - Format" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[String.Format(&quot;Welcome {0} to RPA {1}&quot;,&quot;Sai&quot;,&quot;Developer&quot;)]" />
-    <ui:LogMessage DisplayName="Log Message - IndexOf" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Index Of P is  :&quot; + mixedString.ToLower.IndexOf(&quot;p&quot;).ToString]" />
-    <ui:LogMessage DisplayName="Log Message - Replace" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Replaced String : &quot; + Replace.Replace(&quot;Replaced&quot;,&quot;Original&quot;)]" />
-    <ui:LogMessage DisplayName="Log Message - Split" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;String Split &quot;+ &quot;S ai Ku mar&quot;.Split(&quot; &quot;C).ToString]" />
+    <ui:LogMessage DisplayName="Log Message - toLower" sap:VirtualizedContainerService.HintSize="370,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;The Lower String is :&quot;+mixedString.ToLower]" />
+    <ui:LogMessage DisplayName="Log Message - toUpper" sap:VirtualizedContainerService.HintSize="370,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;The Upper String is :&quot;+mixedString.ToUpper]" />
+    <ui:LogMessage DisplayName="Log Message - Contains" sap:VirtualizedContainerService.HintSize="370,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Value of Lo in the String is :&quot; + mixedString.ToLower.Contains(&quot;p&quot;).ToString]" />
+    <ui:LogMessage DisplayName="Log Message - Format" sap:VirtualizedContainerService.HintSize="370,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[String.Format(&quot;Welcome {0} to RPA {1}&quot;,&quot;Sai&quot;,&quot;Developer&quot;)]" />
+    <ui:LogMessage DisplayName="Log Message - IndexOf" sap:VirtualizedContainerService.HintSize="370,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Index Of P is  :&quot; + mixedString.ToLower.IndexOf(&quot;p&quot;).ToString]" />
+    <ui:LogMessage DisplayName="Log Message - Replace" sap:VirtualizedContainerService.HintSize="370,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Replaced String : &quot; + Replace.Replace(&quot;Replaced&quot;,&quot;Original&quot;)]" />
+    <Assign DisplayName="Assign - Split Array" sap:VirtualizedContainerService.HintSize="370,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:String[]">[splitArray]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:String[]">[splitString.Split(","C)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each - Split Array" sap:VirtualizedContainerService.HintSize="370,194" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[splitArray]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+          </ActivityAction.Argument>
+          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Name Of Spiltted Array is : &quot;+item]" />
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <Assign DisplayName="Assign - Split List" sap:VirtualizedContainerService.HintSize="370,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:List(x:String)">[splitList]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:List(x:String)">[splitString.Split(","C).ToList]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each - Split List" sap:VirtualizedContainerService.HintSize="370,194" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[splitList]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+          </ActivityAction.Argument>
+          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Name Of Spiltted List is : &quot;+item]" />
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box - List" sap:VirtualizedContainerService.HintSize="370,59" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Single Line &quot; + String.Join(&quot;,&quot;,splitList)]" />
   </Sequence>
 </Activity>
