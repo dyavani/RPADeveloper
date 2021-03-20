@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="AcademyPractice01" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="713,964" sap2010:WorkflowViewState.IdRef="AcademyPractice01_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="AcademyPractice01" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="713,1293" sap2010:WorkflowViewState.IdRef="AcademyPractice01_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -55,17 +55,12 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Given an input list of countries please sort the list and print the first 3 values in descending order.&#xD;&#xA;&#xD;&#xA;Note: Please use this value for the List initialization: new List(of String) from {&quot;Germany&quot;, &quot;Spain&quot;, &quot;Japan&quot;, &quot;Brazil&quot;, &quot;India&quot;, &quot;China&quot;}" DisplayName="AcademyPractice01" sap:VirtualizedContainerService.HintSize="376,899" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Given an input list of countries please sort the list and print the first 3 values in descending order.&#xA;&#xA;Note: Please use this value for the List initialization: new List(of String) from {&quot;Germany&quot;, &quot;Spain&quot;, &quot;Japan&quot;, &quot;Brazil&quot;, &quot;India&quot;, &quot;China&quot;}" DisplayName="AcademyPractice01" sap:VirtualizedContainerService.HintSize="478,1228" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="scg:List(x:String)" Name="listCountries">
-        <Variable.Default>
-          <mva:VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="new List(of String) from {&quot;Germany&quot;, &quot;Spain&quot;, &quot;Japan&quot;, &quot;Brazil&quot;, &quot;India&quot;, &quot;China&quot;}" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[new List(of String) from {&quot;Germany&quot;, &quot;Spain&quot;, &quot;Japan&quot;, &quot;Brazil&quot;, &quot;India&quot;, &quot;China&quot;}]" Name="listCountries" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -73,22 +68,44 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box - Print All Countries" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Before Sorting &quot;+Environment.NewLine+String.Join(&quot;,&quot;,listCountries)]" />
-    <InvokeMethod DisplayName="Invoke Sort Method" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Sort">
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box - Print All Countries" sap:VirtualizedContainerService.HintSize="436,59" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Before Sorting &quot;+Environment.NewLine+String.Join(&quot;,&quot;,listCountries)]" />
+    <InvokeMethod DisplayName="Invoke Sort Method" sap:VirtualizedContainerService.HintSize="436,134" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Sort">
       <InvokeMethod.TargetObject>
         <InArgument x:TypeArguments="scg:List(x:String)">[listCountries]</InArgument>
       </InvokeMethod.TargetObject>
     </InvokeMethod>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box - Print All Countries" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;After Sorting &quot;+Environment.NewLine+String.Join(&quot;,&quot;,listCountries)]" />
-    <Assign DisplayName="Assign - Get 0-3" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
-      <Assign.To>
-        <OutArgument x:TypeArguments="scg:List(x:String)">[listCountries]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="scg:List(x:String)">[listCountries.GetRange(0,3)]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <InvokeMethod DisplayName="Invoke Reverse Method" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" MethodName="Reverse">
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box - Print All Countries" sap:VirtualizedContainerService.HintSize="436,59" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;After Sorting &quot;+Environment.NewLine+String.Join(&quot;,&quot;,listCountries)]" />
+    <InvokeMethod DisplayName="Invoke RemoveRange Method" sap:VirtualizedContainerService.HintSize="436,134" sap2010:WorkflowViewState.IdRef="InvokeMethod_4" MethodName="RemoveRange">
+      <InvokeMethod.TargetObject>
+        <InArgument x:TypeArguments="scg:List(x:String)">[listCountries]</InArgument>
+      </InvokeMethod.TargetObject>
+      <InArgument x:TypeArguments="x:Int32">
+        <Literal x:TypeArguments="x:Int32" Value="3" />
+      </InArgument>
+      <InArgument x:TypeArguments="x:Int32">
+        <Literal x:TypeArguments="x:Int32" Value="3" />
+      </InArgument>
+    </InvokeMethod>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,230" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign DisplayName="Assign - Get 0-3" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="scg:List(x:String)">[listCountries]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="scg:List(x:String)">[listCountries.GetRange(0,3)]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <InvokeMethod DisplayName="Invoke Reverse Method" sap:VirtualizedContainerService.HintSize="436,134" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" MethodName="Reverse">
       <InvokeMethod.TargetObject>
         <InArgument x:TypeArguments="scg:List(x:String)">[listCountries]</InArgument>
       </InvokeMethod.TargetObject>
